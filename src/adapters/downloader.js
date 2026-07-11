@@ -153,6 +153,7 @@ export class FileHandle {
     // Make filename RFC5987 compatible
     const fileName = encodeURIComponent(this.name).replace(/['()]/g, escape).replace(/\*/g, '%2A')
     const headers = {
+      'x-content-type-options': 'nosniff',
       'content-disposition': "attachment; filename*=UTF-8''" + fileName,
       'content-type': 'application/octet-stream; charset=utf-8',
       ...(options.size ? { 'content-length': options.size } : {})
